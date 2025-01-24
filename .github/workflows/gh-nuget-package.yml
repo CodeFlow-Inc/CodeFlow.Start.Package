@@ -1,0 +1,41 @@
+name: Publish NuGet Package on Push to Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "8.0"
+
+      - name: Add GitHub Packages NuGet source
+        run: dotnet nuget add source --username CodeFlow-Inc --password ${{ secrets.PACKAGES_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/CodeFlow-Inc/index.json"
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build Project
+        run: dotnet build src/FoodService.Data.Nugget.Pkg/FoodService.Data.Nugget.Pkg.csproj --configuration Release
+
+      - name: Pack NuGet Package
+        run: |
+          PACK_OUTPUT_DIR=$(pwd)/artifacts
+          mkdir -p $PACK_OUTPUT_DIR
+          dotnet pack CodeCodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj --configuration Release -o $PACK_OUTPUT_DIR
+
+      - name: Publish NuGet Package
+        run: |
+          for nupkg in $(pwd)/artifacts/*.nupkg; do
+            echo "Pushing package $nupkg"
+            dotnet nuget push $nupkg --api-key ${{ secrets.PACKAGES_TOKEN }} --source "github"
+          done
