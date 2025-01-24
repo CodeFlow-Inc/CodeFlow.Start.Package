@@ -25,7 +25,7 @@ jobs:
         run: dotnet restore
 
       - name: Build Project
-        run: dotnet build src/FoodService.Data.Nugget.Pkg/FoodService.Data.Nugget.Pkg.csproj --configuration Release
+        run: dotnet build CodeCodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj -- --configuration Release
 
       - name: Pack NuGet Package
         run: |
