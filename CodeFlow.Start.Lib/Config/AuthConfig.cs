@@ -4,44 +4,43 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace CodeFlow.Start.Lib.Config
+namespace CodeFlow.Start.Lib.Config;
+
+/// <summary>
+/// Configuration class for authentication.
+/// </summary>
+public static class AuthConfig
 {
     /// <summary>
-    /// Configuration class for authentication.
+    /// Configures authentication services.
     /// </summary>
-    public static class AuthConfig
+    /// <param name="services">The service collection.</param>
+    /// <param name="configuration">The configuration.</param>
+    public static void ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
-        /// <summary>
-        /// Configures authentication services.
-        /// </summary>
-        /// <param name="services">The service collection.</param>
-        /// <param name="configuration">The configuration.</param>
-        public static void ConfigureAuthentication(this IServiceCollection services, IConfiguration configuration)
+        services.AddAuthentication(options =>
         {
-            services.AddAuthentication(options =>
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            options.SaveToken = true;
+            options.RequireHttpsMetadata = false;
+            options.TokenValidationParameters = new TokenValidationParameters()
             {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.SaveToken = true;
-                options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidIssuer = configuration["ValidIssuer"],
+                ValidateIssuer = true,
+                ValidIssuer = configuration["ValidIssuer"],
 
-                    ValidateAudience = true,
-                    ValidAudience = configuration["ValidAudience"],
+                ValidateAudience = true,
+                ValidAudience = configuration["ValidAudience"],
 
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Secret"]!)),
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Secret"]!)),
 
-                    ValidateLifetime = true
-                };
-            });
-        }
+                ValidateLifetime = true
+            };
+        });
     }
 }
