@@ -20,7 +20,6 @@ jobs:
 
       - name: Add GitHub Packages NuGet source
         run: |
-          dotnet nuget remove source github || true
           dotnet nuget add source --name github --username CodeFlow-Inc --password "${{ secrets.PACKAGES_TOKEN }}" --store-password-in-clear-text "https://nuget.pkg.github.com/CodeFlow-Inc/index.json"
 
       - name: Restore
