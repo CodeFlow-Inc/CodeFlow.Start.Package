@@ -5,8 +5,7 @@
 		<PackageId>CodeFlow.Start.Lib</PackageId>
 		<Version>1.0.2</Version>
 		<Authors>
-			CodeFlow
-			Nicolas Buscarini
+			CodeFlow, CodeFlow Contributors, Nicolas Buscarini
 		</Authors>
 		<Company>CodeFlow</Company>
 		<PackageDescription>A library for configuration start projects</PackageDescription>
