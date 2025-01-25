@@ -4,8 +4,11 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<PackageId>CodeFlow.Start.Lib</PackageId>
 		<Version>1.0.0</Version>
-		<Authors>FoodService</Authors>
-		<Company>FoodService</Company>
+		<Authors>
+			CodeFlow
+			Nicolas Buscarini
+		</Authors>
+		<Company>CodeFlow</Company>
 		<PackageDescription>A library for configuration start projects</PackageDescription>
 		<RepositoryUrl>https://github.com/CodeFlow-Inc/CodeFlow.Start.Package</RepositoryUrl>
 		<Nullable>enable</Nullable>

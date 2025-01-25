@@ -19,7 +19,9 @@ jobs:
           dotnet-version: "8.0"
 
       - name: Add GitHub Packages NuGet source
-        run: dotnet nuget add source --username CodeFlow-Inc --password ${{ secrets.PACKAGES_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/CodeFlow-Inc/index.json"
+        run: |
+          dotnet nuget remove source github || true
+          dotnet nuget add source --name github --username CodeFlow-Inc --password "${{ secrets.PACKAGES_TOKEN }}" --store-password-in-clear-text "https://nuget.pkg.github.com/CodeFlow-Inc/index.json"
 
       - name: Restore
         run: dotnet restore
@@ -31,11 +33,11 @@ jobs:
         run: dotnet nuget list source
 
       - name: Pack NuGet Package
+        shell: bash
         run: |
-          $PACK_OUTPUT_DIR = "$(pwd)/artifacts"
-          mkdir -Force $PACK_OUTPUT_DIR
-          dotnet pack CodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj --configuration Release -o $PACK_OUTPUT_DIR
-        shell: pwsh
+          PACK_OUTPUT_DIR="$(pwd)/artifacts"
+          mkdir -p "$PACK_OUTPUT_DIR"
+          dotnet pack CodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj --configuration Release -o "$PACK_OUTPUT_DIR"
 
       - name: Publish NuGet Package
         shell: bash
