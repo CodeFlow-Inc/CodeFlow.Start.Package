@@ -25,13 +25,13 @@ jobs:
         run: dotnet restore
 
       - name: Build Project
-        run: dotnet build CodeCodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj --configuration Release
+        run: dotnet build CodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj --configuration Release
 
       - name: Pack NuGet Package
         run: |
           PACK_OUTPUT_DIR=$(pwd)/artifacts
           mkdir -p $PACK_OUTPUT_DIR
-          dotnet pack CodeCodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj --configuration Release -o $PACK_OUTPUT_DIR
+          dotnet pack CodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj --configuration Release -o $PACK_OUTPUT_DIR
 
       - name: Publish NuGet Package
         run: |
