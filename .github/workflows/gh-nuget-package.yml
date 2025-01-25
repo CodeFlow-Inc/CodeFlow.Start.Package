@@ -29,11 +29,12 @@ jobs:
 
       - name: Pack NuGet Package
         run: |
-          PACK_OUTPUT_DIR=$(pwd)/artifacts
-          mkdir -p $PACK_OUTPUT_DIR
+          $PACK_OUTPUT_DIR = "$(pwd)/artifacts"
+          mkdir $PACK_OUTPUT_DIR
           dotnet pack CodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj --configuration Release -o $PACK_OUTPUT_DIR
 
       - name: Publish NuGet Package
+        shell: bash
         run: |
           for nupkg in $(pwd)/artifacts/*.nupkg; do
             echo "Pushing package $nupkg"
