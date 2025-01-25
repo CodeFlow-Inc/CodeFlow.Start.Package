@@ -30,15 +30,16 @@ jobs:
       - name: Test NuGet Source
         run: dotnet nuget list source
 
-      - name: Pack NuGet Package with BuildNumber
+      - name: Pack NuGet Package
         shell: bash
         run: |
           PACK_OUTPUT_DIR="$(pwd)/artifacts"
           mkdir -p "$PACK_OUTPUT_DIR"
+          VERSION=$(git rev-list --count HEAD)
           dotnet pack CodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj \
-            --configuration Release \
-            -o "$PACK_OUTPUT_DIR" \
-            /p:Version=1.1.${{ github.run_number }}
+              --configuration Release \
+              -o "$PACK_OUTPUT_DIR" \
+              /p:Version=1.1.$VERSION
 
       - name: Publish NuGet Package
         shell: bash
