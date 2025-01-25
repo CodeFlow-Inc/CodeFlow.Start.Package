@@ -23,7 +23,7 @@ namespace CodeFlow.Start.Lib.Config.Filters
             }
 
             // Initialize the operation parameters if null
-            operation.Parameters ??= new List<OpenApiParameter>();
+            operation.Parameters ??= [];
         }
     }
 }

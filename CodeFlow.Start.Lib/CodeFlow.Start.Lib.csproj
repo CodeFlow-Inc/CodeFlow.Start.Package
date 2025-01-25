@@ -16,7 +16,19 @@
 		<Nullable>enable</Nullable>
 		<PackageProjectUrl>https://github.com/CodeFlow-Inc</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageIcon>icon.jpeg</PackageIcon>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Include="..\icon.jpeg">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="11.11.0" />

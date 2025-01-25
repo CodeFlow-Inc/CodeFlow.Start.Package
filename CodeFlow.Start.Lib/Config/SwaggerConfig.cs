@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using System.Linq;
 
 namespace CodeFlow.Start.Lib.Config
 {
@@ -54,7 +55,7 @@ namespace CodeFlow.Start.Lib.Config
                                 Id = "Bearer"
                             }
                         },
-                        Array.Empty<string>()
+                        []
                     }
                 });
             });

@@ -1,4 +1,6 @@
-﻿namespace CodeFlow.Start.Lib.Context.Tracking;
+﻿using System;
+
+namespace CodeFlow.Start.Lib.Context.Tracking;
 
 /// <summary>
 /// Represents a record of a failed command execution.
