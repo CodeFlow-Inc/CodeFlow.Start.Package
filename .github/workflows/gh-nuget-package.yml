@@ -19,8 +19,7 @@ jobs:
           dotnet-version: "8.0"
 
       - name: Add GitHub Packages NuGet source
-        run: |
-          dotnet nuget add source --name github --username CodeFlow-Inc --password "${{ secrets.PACKAGES_TOKEN }}" --store-password-in-clear-text "https://nuget.pkg.github.com/CodeFlow-Inc/index.json"
+        run: dotnet nuget add source --username CodeFlow-Inc --password ${{ secrets.PACKAGES_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/CodeFlow-Inc/index.json"
 
       - name: Restore
         run: dotnet restore
