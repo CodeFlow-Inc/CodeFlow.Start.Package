@@ -39,5 +39,5 @@ jobs:
         run: |
           for nupkg in $(pwd)/artifacts/*.nupkg; do
             echo "Pushing package $nupkg"
-            dotnet nuget push "$nupkg" --api-key ${{ secrets.PACKAGES_TOKEN }}
+            dotnet nuget push "$nupkg" --api-key "${{ secrets.PACKAGES_TOKEN }}" --source "https://nuget.pkg.github.com/CodeFlow-Inc/index.json"
           done
