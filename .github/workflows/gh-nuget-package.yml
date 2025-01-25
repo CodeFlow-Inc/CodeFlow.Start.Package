@@ -27,6 +27,9 @@ jobs:
       - name: Build Project
         run: dotnet build CodeFlow.Start.Lib/CodeFlow.Start.Lib.csproj --configuration Release
 
+      - name: Test NuGet Source
+        run: dotnet nuget list source
+
       - name: Pack NuGet Package
         run: |
           $PACK_OUTPUT_DIR = "$(pwd)/artifacts"
@@ -39,5 +42,5 @@ jobs:
         run: |
           for nupkg in $(pwd)/artifacts/*.nupkg; do
             echo "Pushing package $nupkg"
-            dotnet nuget push "$nupkg" --api-key "${{ secrets.PACKAGES_TOKEN }}" --source "https://nuget.pkg.github.com/CodeFlow-Inc/index.json"
+            dotnet nuget push "$nupkg" --api-key "${{ secrets.PACKAGES_TOKEN }}" --source "github"
           done
