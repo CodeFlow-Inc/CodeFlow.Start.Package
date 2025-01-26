@@ -10,7 +10,7 @@ public abstract class BaseEntity<TKey> : IBaseEntity<TKey>
     /// <summary>
     /// Gets or sets the unique identifier of the entity.
     /// </summary>
-    public required TKey Id { get; set; }
+    public TKey Id { get; set; }
 
     /// <summary>
     /// Gets the date and time when the entity was created.
