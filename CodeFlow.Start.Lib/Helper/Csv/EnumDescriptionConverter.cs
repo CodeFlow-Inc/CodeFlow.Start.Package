@@ -3,16 +3,18 @@ using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using System;
 using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
+using System.Text;
 
 namespace CodeFlow.Start.Lib.Helper.Csv;
 
 /// <summary>
-/// 
+/// Converts an enum value to and from its description attribute or name.
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public class EnumDescriptionConverterr<T> : DefaultTypeConverter where T : struct, Enum
 {
-
     /// <summary>
     /// Converts a string to an enum value based on the description attribute or name.
     /// </summary>
@@ -25,18 +27,20 @@ public class EnumDescriptionConverterr<T> : DefaultTypeConverter where T : struc
     {
         ArgumentNullException.ThrowIfNull(text);
 
+        string normalizedText = EnumDescriptionConverterr<T>.NormalizeString(text);
+
         foreach (var field in typeof(T).GetFields())
         {
             if (field != null && Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) is DescriptionAttribute attribute)
             {
-                if (attribute.Description == text)
+                if (EnumDescriptionConverterr<T>.NormalizeString(attribute.Description) == normalizedText)
                 {
                     return (T)field.GetValue(null)!;
                 }
             }
             else
             {
-                if (field != null && field.Name == text)
+                if (field != null && EnumDescriptionConverterr<T>.NormalizeString(field.Name) == normalizedText)
                 {
                     return (T)field.GetValue(null)!;
                 }
@@ -64,5 +68,19 @@ public class EnumDescriptionConverterr<T> : DefaultTypeConverter where T : struc
             return enumValue.ToString();
         }
         return base.ConvertToString(value, row, memberMapData);
+    }
+
+    /// <summary>
+    /// Normalizes a string by removing diacritics and converting to lowercase.
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    private static string NormalizeString(string input)
+    {
+        return new string(input
+            .Normalize(NormalizationForm.FormD)
+            .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+            .ToArray())
+            .ToLowerInvariant();
     }
 }
