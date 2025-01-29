@@ -1,4 +1,4 @@
-﻿using CodeFlow.Start.Lib.Context.Configurations;
+﻿using CodeFlow.Start.Package.Context.Configurations;
 using CodeFlow.Start.Package.Context.Tracking;
 using Microsoft.EntityFrameworkCore;
 
