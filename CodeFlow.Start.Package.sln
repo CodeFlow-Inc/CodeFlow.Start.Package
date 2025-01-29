@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FF58F9FA-E43F-408F-88DC-3FF33146AA8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFlow.Csv.Package", "..\CodeFlow.Csv.Lib\src\CodeFlow.Csv.Package\CodeFlow.Csv.Package.csproj", "{23F46148-AA36-4BA5-AFEC-BED9F2A85561}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeFlow.Start.Package", "src\CodeFlow.Start.Package\CodeFlow.Start.Package.csproj", "{09EB5C1A-1681-4B6B-816B-A5F458606BE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,15 +19,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{23F46148-AA36-4BA5-AFEC-BED9F2A85561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23F46148-AA36-4BA5-AFEC-BED9F2A85561}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23F46148-AA36-4BA5-AFEC-BED9F2A85561}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23F46148-AA36-4BA5-AFEC-BED9F2A85561}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09EB5C1A-1681-4B6B-816B-A5F458606BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09EB5C1A-1681-4B6B-816B-A5F458606BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09EB5C1A-1681-4B6B-816B-A5F458606BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09EB5C1A-1681-4B6B-816B-A5F458606BE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{23F46148-AA36-4BA5-AFEC-BED9F2A85561} = {FF58F9FA-E43F-408F-88DC-3FF33146AA8C}
+		{09EB5C1A-1681-4B6B-816B-A5F458606BE1} = {FF58F9FA-E43F-408F-88DC-3FF33146AA8C}
 	EndGlobalSection
 EndGlobal
